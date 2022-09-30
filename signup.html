@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+           
+            background-color: rgb(34, 34, 95);
+        }
+
+        #form {
+            text-align: left;
+            margin: auto;
+            width: 29%;
+            font-size: 20px;
+            background-color: white;
+            padding: 15px 30px;
+            
+        }
+
+        #check {
+            color: rgb(57, 53, 53);
+            font-size: 18px;
+            padding: 15px;
+        }
+
+        .button {
+            background-color: #4868bb;
+            border: none;
+            color: white;
+            padding: 11px 25px;
+            text-align: center;
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 15px;
+            margin-right: 30px;
+           
+        }
+
+        .button:hover {
+            background-color: #2e3e68;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="form">
+        <h2>Sign-in</h2>
+        
+            <p> Name</p>
+            <input placeholder="Name" type="text" id="name">
+            <br>
+
+            <p>Gender</p>
+            <select id="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <p>Phone-no.</p>
+            <input placeholder="Phone Number" type="number" id="phone">
+
+            <p>Work email</p>
+            <input placeholder="Email" type="email" id="email">
+
+            <p>Password</p>
+            <input placeholder="Password" type="text" id="password">
+            <br>
+            <div id="check">
+                <input type="checkbox"><span>I agree to the Terms of Services and Privacy Policy</span>
+            </div>
+
+            <input class="button" type="submit" value="Submit">
+        
+    </form>
+
+</body>
+
+</html>
+<script>
+    let form = document.querySelector("form");
+
+    let LSData = JSON.parse(localStorage.getItem("sign")) || [];
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (form.name.value === "" || form.email.value === "" || form.gender.value === "" || form.phone.value === "" || form.password.value === "") {
+            alert("please fill all the field");
+        }
+        else {
+            let obj = {
+                name: form.name.value,
+                email: form.email.value,
+                gender: form.gender.value,
+                phone: form.phone.value,
+                password: form.password.value,
+            };
+
+            LSData.push(obj);
+            localStorage.setItem("sign", JSON.stringify(LSData));
+            alert("Congratulations!, you logged in successfully")
+        }
+
+    })
+</script>
